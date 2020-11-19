@@ -145,30 +145,6 @@ list.iterate(printNode)
 => Node with value 'hi again'
 ```
 
-Once that's working, make one final change to `iterate`: check the return value of the callback. If it's `true` stop iterating and return the current `Node`. If it's `false`, continue iterating.
-
-```
-function printNode(node):
-  print node.value
-  return false
-
-head = new Node('hi again', new Node('but why?'))
-list = new LinkedList(head)
-list.iterate(printNode)
-=> 'hi again'
-=> 'but why?'
-=> head Node
-
-function findBye(node):
-  return node.value == 'but why?'
-
-list.iterate(findBye)
-=> 'but why?'
-=> Node with value 'but why?' // this is the current node when iteration stops
-```
-
-You can test the method just like before. Be sure to test that you are able to iterate over the entire list as well as only part of it.
-
 ### 6. Add `print` method to `LinkedList`
 
 The `print` method should print each Node value on its own line. Use the `iterate` method in the `print` method.
