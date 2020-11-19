@@ -58,7 +58,7 @@ We can use another class called LinkedList to track the `head` of the list.
 
 ## Implement a Linked List
 
-Please note that in Ruby we'll be using `next_node` as the `Node` attribute instead of `next`. This is to avoid confusing syntax, since next is a reserved keyword in Ruby. It also leads to confusing syntax highlighting as a result. In short, wherever you see `next`, think `next_node` for Ruby.
+Please note that in Ruby we'll be using `next_node` instead of `next` as the `Node` attribute. This is to avoid confusing syntax, since next is a reserved keyword in Ruby. It also leads to confusing syntax highlighting as a result. In short, wherever you see `next`, think `next_node` for Ruby.
 
 ### 1. Declare the `Node` Class
 
