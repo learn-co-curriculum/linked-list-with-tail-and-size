@@ -142,7 +142,7 @@ list = new LinkedList(head)
 list.iterate(printNode)
 => 'hi again'
 => 'but why?'
-=> head Node
+=> Node with value 'hi again'
 ```
 
 Once that's working, make one final change to `iterate`: check the return value of the callback. If it's `true` stop iterating and return the current `Node`. If it's `false`, continue iterating.
@@ -159,12 +159,12 @@ list.iterate(printNode)
 => 'but why?'
 => head Node
 
-function findHi(node):
-  return node.value == 'hi again'
+function findBye(node):
+  return node.value == 'but why?'
 
-list.iterate(findHi)
-=> 'hi again'
-=> head Node // this is the current node when iteration stops
+list.iterate(findBye)
+=> 'but why?'
+=> Node with value 'but why?' // this is the current node when iteration stops
 ```
 
 You can test the method just like before. Be sure to test that you are able to iterate over the entire list as well as only part of it.
@@ -188,7 +188,7 @@ The `find` method searches for a `Node` with the `target` value. If the `Node` i
 ```
 head = new Node('hi again', new Node('but why?'))
 list = new LinkedList(head)
-list.find('buy why?')
+list.find('but why?')
 => Node with value 'but why?'
 
 list.find('tell me secrets')
@@ -248,7 +248,7 @@ Hint: The `iterate` method might be helpful here.
 head = new Node('hi again', new Node('but why?'))
 list = new LinkedList(head)
 list.removeLast()
-=> Node with value 'buy why?'
+=> Node with value 'but why?'
 list.print()
 => 'hi again'
 ```
