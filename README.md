@@ -326,7 +326,7 @@ list.head
 => null or nil
 ```
 
-Use the language of your choosing. We've included starter files for some languages where you can pseudocode, explain your solution and code.
+Use the language of your choosing. We've included starter files for some languages where you can pseudocode, and optionally explain your solution and code.
 
 ## Before you start coding:
 
