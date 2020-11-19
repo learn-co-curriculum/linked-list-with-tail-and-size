@@ -31,11 +31,11 @@ head = new Node(value: 'i am the beginning!')
 list = new LinkedList(head)
 ```
 
-> A note on online algorithm challenges: When completing challenges online, such as through LeetCode, you might be provided with only the head node, rather than a LinkedList class.
+> A note on online algorithm challenges: When completing challenges online, such as through LeetCode, you might be provided with only the head Node, rather than a LinkedList class.
 
 ## How Do We Visit Each Node?
 
-Iterables, like Arrays, provide instance methods that allow us to traverse them, and we can also traverse them using loops and indices. Linked Lists are a little different. Nodes do not have indexes: they just point to the next Node, or to nothing if it's the last node in the list. This means we have to go to the `head` Node, ask it what's next, go there, and repeat!
+Iterables, like Arrays, provide instance methods that allow us to traverse them, and we can also traverse them using loops and indices. Linked Lists are a little different. Nodes do not have indexes: they just point to the next Node, or to nothing if it's the last node in the list (the `tail`). This means we have to go to the `head` Node, ask it what's next, go there, and repeat!
 
 Here's an example using people waiting in a queue to get into a club to dance to some sick beats! In order, the queue consists of Janzz, Murray, and Lakshmi.
 
@@ -48,15 +48,17 @@ You: "Hey Lakshmi! Who's next?"
 Lakshmi: [awkward silence]
 ```
 
-We're not giving you the code here, because we want you to figure out how to traverse a Linked List for yourself later on. We believe in you!
+We're not giving you the code here because we want you to figure out how to traverse a Linked List for yourself later on. We believe in you!
 
 ## Summary
 
-A LinkedList is a data structure consisting of Nodes. The `head` Node denotes the start of the list. Each Node has two attributes: `value` and `next`. `value` stores the data we might be interested in retrieving, while `next` points to the next Node in the list. The last Node in the list points to nothing (e.g. `next` is `null`), and that's how we know it's the end!
+A LinkedList is a data structure consisting of Nodes. The `head` Node denotes the start of the list. Each Node has two attributes: `value` and `next`. `value` stores the data we might be interested in retrieving, while `next` points to the next Node in the list. The last Node, called the `tail`, in the list points to nothing (e.g. `next` is `null`), and that's how we know it's the end!
 
 We can use another class called LinkedList to track the `head` of the list.
 
 ## Implement a Linked List
+
+Please note that in Ruby we'll be using `next_node` as the `Node` attribute instead of `next`. This is to avoid confusing syntax, since next is a reserved keyword in Ruby. It also leads to confusing syntax highlighting as a result. In short, wherever you see `next`, think `next_node` for Ruby.
 
 ### 1. Declare the `Node` Class
 
@@ -122,7 +124,7 @@ list = new LinkedList(head)
 list.iterate()
 => 'hi again'
 => 'but why?'
-=> head Node
+=> Node with value 'hi again'
 ```
 
 ### 5. Modify the `iterate(callback)` Method to Take a Callback
