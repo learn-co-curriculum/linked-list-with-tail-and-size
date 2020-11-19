@@ -1,7 +1,7 @@
 class LinkedList
   attr_accessor :head
 
-  def initialize(head)
+  def initialize(head = nil)
     @head = head
   end
 
@@ -36,6 +36,11 @@ class LinkedList
   end
 
   def add_last(node)
+    if @head.nil?
+      @head = node
+      return
+    end
+
     iterate do |curr_node|
       if curr_node.next_node.nil?
         curr_node.next_node = node
@@ -46,11 +51,13 @@ class LinkedList
 
   def remove_first
     old_head = @head
-    @head = @head.next_node
+    @head = @head.next_node unless @head.nil?
     old_head
   end
 
   def remove_last
+    return remove_first if @head.nil? || @head.next_node.nil?
+
     iterate do |node|
       if node.next_node.next_node.nil?
         old_tail = node.next_node
@@ -105,6 +112,10 @@ class LinkedList
       end
     end
   end
+
+  def clear
+    @head = nil
+  end
 end
 
 class Node
@@ -119,9 +130,14 @@ end
 if __FILE__ == $PROGRAM_NAME
   head = Node.new('one', Node.new('two', Node.new('three', Node.new('four'))))
   list = LinkedList.new(head)
+  empty_list = LinkedList.new
 
   puts "Print one to four"
   list.print
+  puts "-----------------------------"
+
+  puts "Print empty list"
+  empty_list.print
   puts "-----------------------------"
 
   puts "Find four"
@@ -130,9 +146,19 @@ if __FILE__ == $PROGRAM_NAME
   puts "Nothing: #{list.find(50)}"
   puts "-----------------------------"
 
+  puts "Find four in empty list"
+  puts "#{empty_list.find('four')}"
+  puts "-----------------------------"
+
   puts "Add zero as head"
   list.add_first(Node.new('zero'))
   list.print
+  puts "-----------------------------"
+
+  puts "Add zero as head to empty list"
+  empty_list.add_first(Node.new('zero'))
+  empty_list.print
+  empty_list.head = nil
   puts "-----------------------------"
 
   puts "Add five as tail"
@@ -140,14 +166,30 @@ if __FILE__ == $PROGRAM_NAME
   list.print
   puts "-----------------------------"
 
+  puts "Add five as tail to empty list"
+  empty_list.add_last(Node.new('five'))
+  empty_list.print
+  empty_list.head = nil
+  puts "-----------------------------"
+
   puts "Remove first node zero and return it"
   puts "#{list.remove_first.value} was removed"
   list.print
   puts "-----------------------------"
 
+  puts "Remove first node from an empty list"
+  puts "#{empty_list.remove_first} was removed"
+  empty_list.print
+  puts "-----------------------------"
+
   puts "Remove last node five and return it"
   puts "#{list.remove_last.value} was removed"
   list.print
+  puts "-----------------------------"
+
+  puts "Remove last node from empty list and return it"
+  puts "#{empty_list.remove_last} was removed"
+  empty_list.print
   puts "-----------------------------"
 
   puts "Replace node at index and return inserted node"
@@ -189,6 +231,13 @@ if __FILE__ == $PROGRAM_NAME
   puts "Remove tail four: #{list.remove(2).value}"
   puts "Remove three: #{list.remove(1).value}"
   puts "Remove one: #{list.remove(0).value}"
+  list.print
+  puts "-----------------------------"
+
+  puts "Clear a list"
+  head = Node.new('one', Node.new('two', Node.new('three', Node.new('four'))))
+  list = LinkedList.new(head)
+  list.clear
   list.print
 end
 

@@ -14,7 +14,7 @@ class LinkedList {
   }
 
   // find the node with the target value and return it
-  // if not found return nil, use your iterate method to be DRY!
+  // if not found return null, use your iterate method to be DRY!
   find(target) {
 
   }

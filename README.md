@@ -84,13 +84,17 @@ node.next
 
 ### 2. Declare the `LinkedList` Class
 
-The `LinkedList` class tracks the `head` of the list, so we know where it begins. It should have one attribute: `head`.
+The `LinkedList` class tracks the `head` of the list, so we know where it begins. It should have one attribute: `head`. Provide a default value for `head` of `null` or `nil`, or some other falsy value.
 
 ```
 node = new Node()
 list = new LinkedList(node)
 list.head
 => Instance of Node
+
+emptyList = new LinkedList()
+list.head
+=> null or nil
 ```
 
 ### 3. Spend a Few Minutes Playing With Your Linked List
@@ -308,6 +312,21 @@ list.remove(0)
 ```
 
 Use the language of your choosing. We've included starter files for some languages where you can pseudocode, explain your solution and code.
+
+### 15. Add `clear` to `LinkedList`
+
+Clear the Linked List.
+
+```
+head = new Node('one', new Node('two', new Node('three')))
+list = new LinkedList(head)
+
+list.clear()
+list.print()
+// nothing happens because it's empty
+list.head
+=> null or nil
+```
 
 ## Before you start coding:
 
