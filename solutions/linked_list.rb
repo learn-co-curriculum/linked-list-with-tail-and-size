@@ -1,5 +1,6 @@
 class LinkedList
   attr_accessor :head
+  attr_reader :size, :tail
 
   def initialize(head = nil)
     @head = head
@@ -132,113 +133,7 @@ if __FILE__ == $PROGRAM_NAME
   list = LinkedList.new(head)
   empty_list = LinkedList.new
 
-  puts "Print one to four"
-  list.print
-  puts "-----------------------------"
-
-  puts "Print empty list"
-  empty_list.print
-  puts "-----------------------------"
-
-  puts "Find four"
-  puts "#{list.find('four').value}"
-  puts "Find non-existent value"
-  puts "Nothing: #{list.find(50)}"
-  puts "-----------------------------"
-
-  puts "Find four in empty list"
-  puts "#{empty_list.find('four')}"
-  puts "-----------------------------"
-
-  puts "Add zero as head"
-  list.add_first(Node.new('zero'))
-  list.print
-  puts "-----------------------------"
-
-  puts "Add zero as head to empty list"
-  empty_list.add_first(Node.new('zero'))
-  empty_list.print
-  empty_list.head = nil
-  puts "-----------------------------"
-
-  puts "Add five as tail"
-  list.add_last(Node.new('five'))
-  list.print
-  puts "-----------------------------"
-
-  puts "Add five as tail to empty list"
-  empty_list.add_last(Node.new('five'))
-  empty_list.print
-  empty_list.head = nil
-  puts "-----------------------------"
-
-  puts "Remove first node zero and return it"
-  puts "#{list.remove_first.value} was removed"
-  list.print
-  puts "-----------------------------"
-
-  puts "Remove first node from an empty list"
-  puts "#{empty_list.remove_first} was removed"
-  empty_list.print
-  puts "-----------------------------"
-
-  puts "Remove last node five and return it"
-  puts "#{list.remove_last.value} was removed"
-  list.print
-  puts "-----------------------------"
-
-  puts "Remove last node from empty list and return it"
-  puts "#{empty_list.remove_last} was removed"
-  empty_list.print
-  puts "-----------------------------"
-
-  puts "Replace node at index and return inserted node"
-  puts "replace middle two with 2: #{list.replace(1, Node.new('2')).value}"
-  list.print
-  puts "replace zeroth one with 1: #{list.replace(0, Node.new('1')).value}"
-  list.print
-  puts "replace tail four with 4: #{list.replace(3, Node.new('4')).value}"
-  list.print
-  puts "replace middle three with 3: #{list.replace(2, Node.new('3')).value}"
-  list.print
-  puts "-----------------------------"
-
-  puts "Insert node at index"
-  puts "Insert at 0"
-  list.insert(0, Node.new('zero'))
-  list.print
-  list.remove_first
-
-  puts "Insert at 2"
-  list.insert(2, Node.new('two'))
-  list.print
-
-  puts "Insert at 4"
-  list.insert(4, Node.new('four'))
-  list.print
-
-  puts "Insert at 6"
-  list.insert(6, Node.new('six'))
-  list.print
-  list.remove_last
-  puts "-----------------------------"
-
-  head = Node.new('one', Node.new('two', Node.new('three', Node.new('four'))))
-  list = LinkedList.new(head)
-
-  puts "Remove the node at the index and return it"
-  puts "Remove two: #{list.remove(1).value}"
-  puts "Remove tail four: #{list.remove(2).value}"
-  puts "Remove three: #{list.remove(1).value}"
-  puts "Remove one: #{list.remove(0).value}"
-  list.print
-  puts "-----------------------------"
-
-  puts "Clear a list"
-  head = Node.new('one', Node.new('two', Node.new('three', Node.new('four'))))
-  list = LinkedList.new(head)
-  list.clear
-  list.print
+  
 end
 
 # Please add your pseudocode to this file
