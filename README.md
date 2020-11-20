@@ -137,6 +137,8 @@ Change the `iterate` method, so that it takes a callback (a function) as an argu
 
 Replace the print statements in the `iterate` method with a call to the callback. When calling the callback, provide the current Node as an argument to the callback. You can test if this is working by calling `iterate` on the list with a callback that prints the value of each Node.
 
+Hint: Rubyists might be interested in learning about passing blocks and using `yield`.
+
 ```
 function printNode(node):
   print node.value

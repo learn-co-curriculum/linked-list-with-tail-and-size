@@ -172,6 +172,7 @@ if (require.main === module) {
   let head = new Node('one', new Node('two', new Node('three', new Node('four'))));
   let list = new LinkedList(head);
   let emptyList = new LinkedList();
+  let oneItemList = new LinkedList(new Node('just one'));
 
   console.log("Print one to four");
   list.print();
@@ -181,11 +182,17 @@ if (require.main === module) {
   emptyList.print();
   console.log("-----------------------------");
 
+  console.log("Handle one item list print");
+  oneItemList.print();
+  console.log("-----------------------------");
+
   console.log(`Find four`);
   console.log(`${list.find('four').value}`);
   console.log(`Find non-existent value`);
   console.log(`Nothing: ${list.find(50)}`);
   console.log(`Find in empty list: ${emptyList.find(20)}`);
+  console.log(`Find just one in one item list: ${oneItemList.find('just one').value}`);
+  console.log(`Find nothing in one item list: ${oneItemList.find('nothing')}`);
   console.log("-----------------------------");
 
   console.log("Add zero as head");
@@ -199,6 +206,12 @@ if (require.main === module) {
   emptyList.head = null;
   console.log("-----------------------------");
 
+  console.log("Add zero as head to one item list");
+  oneItemList.addFirst(new Node('zero'));
+  oneItemList.print();
+  oneItemList.head = oneItemList.head.next;
+  console.log("-----------------------------");
+
   console.log("Add five as tail");
   list.addLast(new Node('five'));
   list.print();
@@ -208,6 +221,12 @@ if (require.main === module) {
   emptyList.addLast(new Node('whaaa'));
   emptyList.print();
   emptyList.head = null;
+  console.log("-----------------------------");
+
+  console.log("Add whaaa as tail to one item list");
+  oneItemList.addLast(new Node('whaaa'));
+  oneItemList.print();
+  oneItemList.head.next = null;
   console.log("-----------------------------");
 
   console.log("Remove first node zero and return it");
@@ -220,6 +239,12 @@ if (require.main === module) {
   emptyList.print();
   console.log("-----------------------------");
 
+  console.log("Remove first node from one item list");
+  console.log(`${oneItemList.removeFirst().value} was removed`);
+  oneItemList.print();
+  oneItemList.head = new Node('just one');
+  console.log("-----------------------------");
+
   console.log("Remove last node five and return it");
   console.log(`${list.removeLast().value} was removed`);
   list.print();
@@ -228,6 +253,12 @@ if (require.main === module) {
   console.log("Remove last node from empty list and return it");
   console.log(`${emptyList.removeLast()} was removed`);
   emptyList.print();
+  console.log("-----------------------------");
+
+  console.log("Remove last node from one item list and return it");
+  console.log(`${oneItemList.removeLast().value} was removed`);
+  oneItemList.print();
+  oneItemList.head = new Node('just one');
   console.log("-----------------------------");
 
   console.log("Replace node at index and return inserted node");
