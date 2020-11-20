@@ -1,4 +1,4 @@
-require "../solutions/linked_list"
+require "./linked_list"
 
 RSpec.describe "Node" do
   let(:node) { Node.new("hi", "there") }
