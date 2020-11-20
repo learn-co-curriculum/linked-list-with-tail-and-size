@@ -281,4 +281,12 @@ describe("LinkedList", () => {
       expect(consoleOutput).toEqual(['one', 'two', 'four']);
     });
   });
+
+  describe("clear()", () => {
+    test("empties the list", () => {
+      linkedList.clear();
+
+      expect(linkedList.head).toBe(null);
+    });
+  });
 });
