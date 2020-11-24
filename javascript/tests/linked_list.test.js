@@ -45,16 +45,16 @@ describe("LinkedList", () => {
       node.value = values[i];
     });
 
-    emptyList.head = null;
+    emptyList = new LinkedList();
 
-    oneItemList.head = justOne;
     justOne.next = null;
+    oneItemList = new LinkedList(justOne);
 
-    linkedList.head = nodeOne;
     nodeOne.next = nodeTwo;
     nodeTwo.next = nodeThree;
     nodeThree.next = nodeFour;
     nodeFour.next = null;
+    linkedList = new LinkedList(nodeOne);
   });
 
   test("head is null if no argument provided on initialization", () => {
@@ -287,6 +287,144 @@ describe("LinkedList", () => {
       linkedList.clear();
 
       expect(linkedList.head).toBe(null);
+    });
+  });
+
+  describe("tail", () => {
+    test("is null for an empty list", () => {
+      expect(emptyList.tail).toBe(null);
+    });
+    
+    test("is a Node when a Node is provided on list initialization", () => {
+      expect(oneItemList.tail).toBe(oneItemList.head);
+    });
+
+    test("is the last Node when a Node connected to other Nodes is provided on initialization", () => {
+      expect(linkedList.tail.value).toBe("four");
+    });
+
+    test("is the correct Node when #addFirst is called on a list", () => {
+      [emptyList, oneItemList, linkedList].forEach(l => l.addFirst(new Node('testing')));
+
+      expect(emptyList.tail.value).toBe("testing");
+      expect(oneItemList.tail.value).toBe("just one");
+      expect(linkedList.tail.value).toBe("four");
+    }); 
+
+    test("is the correct Node when #addLast is called on a list", () => {
+      [emptyList, oneItemList, linkedList].forEach(l => l.addLast(new Node('testing')));
+
+      expect(emptyList.tail.value).toBe("testing");
+      expect(oneItemList.tail.value).toBe("testing");
+      expect(linkedList.tail.value).toBe("testing");
+    });
+
+    test("is the correct Node when #removeFirst is called on a list", () => {
+      [emptyList, oneItemList, linkedList].forEach(l => l.removeFirst());
+
+      expect(emptyList.tail).toBe(null);
+      expect(oneItemList.tail).toBe(null);
+      expect(linkedList.tail.value).toBe("four");
+    });
+
+    test("is the correct Node when #removeLast is called on a list", () => {
+      [emptyList, oneItemList, linkedList].forEach(l => l.removeLast());
+
+      expect(emptyList.tail).toBe(null);
+      expect(oneItemList.tail).toBe(null);
+      expect(linkedList.tail.value).toBe("three");
+    });
+
+    test("is the correct Node when #replace is called on a list", () => {
+      linkedList.replace(3, new Node('should be me'));
+      linkedList.replace(1, new Node('hi'));
+
+      expect(linkedList.tail.value).toBe("should be me");
+    });
+
+    test("is the correct Node when #insert is called on a list", () => {
+      linkedList.insert(3, new Node('should not be me'));
+      linkedList.insert(5, new Node('should be me'));
+      linkedList.insert(1, new Node('hi'));
+
+      expect(linkedList.tail.value).toBe("should be me");
+    }); 
+
+    test("is the correct Node when #remove is called", () => {
+      linkedList.remove(0);
+      expect(linkedList.tail.value).toBe("four");
+
+      linkedList.remove(1);
+      expect(linkedList.tail.value).toBe("four");
+
+      linkedList.remove(1);
+      expect(linkedList.tail.value).toBe("two");
+    });
+  });
+
+  describe("size", () => {
+    test("should be 0 when a new empty list is initialized", () => {
+      expect(emptyList.size).toBe(0);
+    });
+
+    test("should be the corrrect value when a new list is initialized with Node/s", () => {
+      expect(oneItemList.size).toBe(1);
+      expect(linkedList.size).toBe(4);
+    });
+
+    test("increases when a Node is added first or last", () => {
+      emptyList.addFirst(new Node('hi'));
+      emptyList.addLast(new Node("bye"));
+      emptyList.addFirst(new Node("stuff"));
+      
+      expect(emptyList.size).toBe(3);
+    });
+
+    test("decreases when a Node is removed from the head or tail", () => {
+      linkedList.removeFirst();
+      linkedList.removeLast();
+      linkedList.removeLast();
+      
+      expect(linkedList.size).toBe(1);
+    });
+
+    test("does not go below 0", () => {
+      oneItemList.removeLast();
+      oneItemList.removeLast();
+      oneItemList.removeFirst();
+      oneItemList.removeFirst();
+
+      expect(oneItemList.size).toBe(0);
+    });
+
+    test("increases when a Node is inserted", () => {
+      oneItemList.insert(0, new Node("hi"));
+      oneItemList.insert(1, new Node("hi"));
+
+      expect(oneItemList.size).toBe(3);
+    });
+
+    test("decreases when a Node is removed at an index", () => {
+      linkedList.remove(0);
+      linkedList.remove(2);
+
+      expect(linkedList.size).toBe(2);
+    });
+
+    test("does not go below 0 when a Node is removed at an index", () => {
+      linkedList.remove(0);
+      linkedList.remove(0);
+      linkedList.remove(0);
+      linkedList.remove(0);
+      linkedList.remove(0);
+
+      expect(linkedList.size).toBe(0);
+    });
+
+    test("is set to 0 when a list is cleared", () => {
+      linkedList.clear();
+
+      expect(linkedList.size).toBe(0);
     });
   });
 });
