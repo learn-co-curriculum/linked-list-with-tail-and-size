@@ -1,4 +1,4 @@
-require "./linked_list"
+require "../solutions/linked_list"
 
 RSpec.describe "Node" do
   let(:node) { Node.new("hi", "there") }
@@ -252,6 +252,144 @@ RSpec.describe "LinkedList" do
       linked_list.clear
 
       expect(linked_list.head).to be_nil
+    end
+  end
+
+  context "#tail" do
+    it "is nil for an empty list" do
+      expect(empty_list.tail).to be_nil
+    end
+
+    it "is a Node when a Node is provided on list initialization" do
+      expect(one_item_list.tail).to be(one_item_list.head)
+    end
+
+    it "is the last Node when a Node connected to other Nodes is provided on initialization" do
+      expect(linked_list.tail.value).to eq("four")
+    end
+
+    it "is the correct Node when #add_first is called on a list" do
+      [empty_list, one_item_list, linked_list].each { |l| l.add_first(Node.new('testing')) }
+
+      expect(empty_list.tail.value).to eq("testing")
+      expect(one_item_list.tail.value).to eq("just one")
+      expect(linked_list.tail.value).to eq("four")
+    end
+
+    it "is the correct Node when #add_last is called on a list" do
+      [empty_list, one_item_list, linked_list].each { |l| l.add_last(Node.new('testing')) }
+
+      expect(empty_list.tail.value).to eq("testing")
+      expect(one_item_list.tail.value).to eq("testing")
+      expect(linked_list.tail.value).to eq("testing")
+    end
+
+    it "is the correct Node when #remove_first is called on a list" do
+      [empty_list, one_item_list, linked_list].each { |l| l.remove_first }
+
+      expect(empty_list.tail).to be_nil
+      expect(one_item_list.tail).to be_nil
+      expect(linked_list.tail.value).to eq("four")
+    end
+
+    it "is the correct Node when #remove_last is called on a list" do
+      [empty_list, one_item_list, linked_list].each { |l| l.remove_last }
+
+      expect(empty_list.tail).to be_nil
+      expect(one_item_list.tail).to be_nil
+      expect(linked_list.tail.value).to eq("three")
+    end
+
+    it "is the correct Node when #replace is called on a list" do
+      linked_list.replace(3, Node.new('should be me'))
+      linked_list.replace(1, Node.new('hi'))
+
+      expect(linked_list.tail.value).to eq("should be me")
+    end
+
+    it "is the correct Node when #insert is called on a list" do
+      linked_list.insert(3, Node.new('should not be me'))
+      linked_list.insert(5, Node.new('should be me'))
+      linked_list.insert(1, Node.new('hi'))
+
+      expect(linked_list.tail.value).to eq("should be me")
+    end
+
+    it "is the correct Node when #remove is called" do
+      linked_list.remove(0)
+      expect(linked_list.tail.value).to eq("four")
+
+      linked_list.remove(1)
+      expect(linked_list.tail.value).to eq("four")
+
+      linked_list.remove(1)
+      expect(linked_list.tail.value).to eq("two")
+    end
+  end
+
+  context "#size" do
+    it "should be 0 when a new empty list is initialized" do
+      expect(empty_list.size).to eq(0)
+    end
+
+    it "should be the corrrect value when a new list is initialized with Node/s" do
+      expect(one_item_list.size).to eq(1)
+      expect(linked_list.size).to eq(4)
+    end
+
+    it "increases when a Node is added first or last" do
+      empty_list.add_first(Node.new('hi'))
+      empty_list.add_last(Node.new("bye"))
+      empty_list.add_first(Node.new("stuff"))
+
+      expect(empty_list.size).to eq(3)
+    end
+
+    it "decreases when a Node is removed from the head or tail" do
+      linked_list.remove_first
+      linked_list.remove_last
+      linked_list.remove_last
+
+      expect(linked_list.size).to eq(1)
+    end
+
+    it "does not go below 0" do
+      one_item_list.remove_last
+      one_item_list.remove_last
+      one_item_list.remove_first
+      one_item_list.remove_first
+
+      expect(one_item_list.size).to eq(0)
+    end
+
+    it "increases when a Node is inserted" do
+      one_item_list.insert(0, Node.new("hi"))
+      one_item_list.insert(1, Node.new("hi"))
+
+      expect(one_item_list.size).to eq(3)
+    end
+
+    it "decreases when a Node is removed at an index" do
+      linked_list.remove(0)
+      linked_list.remove(2)
+
+      expect(linked_list.size).to eq(2)
+    end
+
+    it "does not go below 0 when a Node is removed at an index" do
+      linked_list.remove(0)
+      linked_list.remove(0)
+      linked_list.remove(0)
+      linked_list.remove(0)
+      linked_list.remove(0)
+
+      expect(linked_list.size).to eq(0)
+    end
+
+    it "is set to 0 when a list is cleared" do
+      linked_list.clear
+      
+      expect(linked_list.size).to eq(0)
     end
   end
 end
