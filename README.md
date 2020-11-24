@@ -78,11 +78,11 @@ list.size
 => 2
 ```
 
-Use the language of your choosing. We've included starter files for some languages where you can pseudocode, and explain your solution, and code.
-
 ### 3. Super Bonus Refactor
 
 Once you can track the `tail` and `size` successfully, go through the `LinkedList` methods and see if you can refactor any to be more time-efficient.
+
+Use the language of your choosing. We've included starter files for some languages where you can pseudocode, and explain your solution, and code.
 
 ## Before you start coding:
 
