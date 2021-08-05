@@ -2,11 +2,11 @@
 
 **Fork and then clone me!**
 
-Today we'll be modifying the Linked List we created earlier to track its `tail` and `size`. You can use your solution or ours as starter code. We've included ours in the starter files if you wish to use it. 
+Today we'll be modifying the Linked List we created earlier to track its `tail` and `size`. You can use your solution or ours as starter code. We've included ours in the starter files if you wish to use it.
 
 Note that this is a pretty strange implementation of a Linked List and there are those who would say: "Ermahgerd! What have you done?!" We're trying to stretch our skills here: that's what we've done!
 
-![Linked List](./linked_list.png)
+![Linked List](https://curriculum-content.s3.amazonaws.com/data-structures-and-algorithms/linked-list-with-tail-and-size/linked_list.png)
 
 ## Refresher in Case You Forgot About Our Old List Friend
 
@@ -22,8 +22,8 @@ For any method, such as adding or removing a Node, assume that only valid inputs
 
 Also make the following assumptions:
 
-* Upon initialization of a new list, a user might provide a Node that is already connected to other Nodes, i.e. the `head` Node being provided has a `next` attribute that points to another Node, and that Node might point to another Node.
-* Any time a Node is added via any other method, such as `add_first` or `insert`, that Node is not yet connected to any other Nodes, i.e. its `next` value is `null` or `nil` or some other falsy value.
+- Upon initialization of a new list, a user might provide a Node that is already connected to other Nodes, i.e. the `head` Node being provided has a `next` attribute that points to another Node, and that Node might point to another Node.
+- Any time a Node is added via any other method, such as `add_first` or `insert`, that Node is not yet connected to any other Nodes, i.e. its `next` value is `null` or `nil` or some other falsy value.
 
 As you modify the class, think about what the time complexity is for any methods you add or modify.
 
